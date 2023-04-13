@@ -2,4 +2,4 @@
 
 Demo:
 
-[here](http://djekke.github.com/PoE-log-parser)
+[here](http://djekke.github.io/PoE-log-parser)

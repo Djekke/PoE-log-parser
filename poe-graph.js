@@ -79,7 +79,25 @@ function handleFileSelect(evt) {
         data[m[7]].levels.x.push(new Date(m[1], m[2]-1, m[3], m[4], m[5], m[6]));
         data[m[7]].levels.y.push(parseInt(m[8]));
       }
+      var m = rows[i].match(/(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2}):(\d{2}) [^:]+: ([^ ]+) \([^)]+\) достигает (\d+) уровня/);
+      if (m !== null) {
+        t_color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+        if (!(m[7] in data)) { 
+          initCharacterData(m[7]);
+        }
+        data[m[7]].levels.x.push(new Date(m[1], m[2]-1, m[3], m[4], m[5], m[6]));
+        data[m[7]].levels.y.push(parseInt(m[8]));
+      }
       m = rows[i].match(/(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2}):(\d{2}) [^:]+: ([^ ]+) has been slain/);
+      if (m !== null) {
+        t_color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+        if (!(m[7] in data)) { 
+          initCharacterData(m[7]);
+        }
+        data[m[7]].deaths.x.push(new Date(m[1], m[2]-1, m[3], m[4], m[5], m[6]));
+        data[m[7]].deaths.y.push(-data[m[7]].deaths.x.length);
+      }
+      m = rows[i].match(/(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2}):(\d{2}) [^:]+: ([^ ]+) был повержен/);
       if (m !== null) {
         t_color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
         if (!(m[7] in data)) { 
